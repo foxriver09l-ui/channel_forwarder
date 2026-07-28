@@ -17,7 +17,8 @@ from handlers import (
     add_channel,
     remove_channel,
     list_channels,
-    receive_post
+    receive_post,
+    backup_db
 )
 
 app_web = Flask(__name__)
@@ -91,7 +92,12 @@ async def main():
             receive_post
         )
     )
-
+    app.add_handler(
+    CommandHandler(
+        "backupdb",
+        backup_db
+    )
+    )
     print("Bot running...")
 
     await app.initialize()

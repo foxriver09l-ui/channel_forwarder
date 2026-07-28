@@ -351,3 +351,27 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "2️⃣ Add your channel using /addchannel\n"
         "3️⃣ Send me a post and I will publish it"
     )
+
+
+
+
+from config import ADMIN_ID
+
+
+# ---------------- BACKUP DB ---------------- #
+
+async def backup_db(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
+    if update.effective_user.id != ADMIN_ID:
+
+        await update.message.reply_text("❌ Unauthorized.")
+        return
+
+    with open("bot.db", "rb") as db_file:
+
+        await context.bot.send_document(
+            chat_id=update.effective_user.id,
+            document=db_file,
+            filename="bot.db",
+            caption="📦 Database backup"
+        )
