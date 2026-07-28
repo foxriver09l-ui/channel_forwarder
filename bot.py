@@ -1,4 +1,6 @@
 import asyncio
+from flask import Flask, send_file
+from threading import Thread
 
 from telegram.ext import (
     Application,
@@ -18,7 +20,24 @@ from handlers import (
     receive_post
 )
 
+app_web = Flask(__name__)
 
+
+@app_web.route("/download-db")
+def download_db():
+
+    return send_file(
+        "bot.db",
+        as_attachment=True
+    )
+
+
+def run_web():
+
+    app_web.run(
+        host="0.0.0.0",
+        port=10000
+    )
 async def main():
 
     create_tables()
