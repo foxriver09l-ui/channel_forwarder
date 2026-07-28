@@ -19,11 +19,11 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     register_user(update.effective_user)
 
     await update.message.reply_text(
-        "👋 Welcome!\n\n"
-        "1. Add your channels:\n"
-        "/addchannel @mychannel\n\n"
-        "2. Add me as admin in those channels.\n\n"
-        "3. Send me any post and I'll publish it."
+    "👋 Welcome!\n\n"
+    "1. Add me as administrator in your channels.\n\n"
+    "2. Add your channels:\n"
+    "/addchannel @mychannel\n\n"
+    "3. Send me any post and I'll publish it."
     )
 
 
@@ -228,7 +228,7 @@ async def receive_post(update: Update, context: ContextTypes.DEFAULT_TYPE):
             caption = clean_text
 
             if caption:
-                caption += f"\n\n📢 {tag}"
+                caption += f"\n\n🔔{tag}🔔"
             else:
                 caption = f"📢 {tag}"
 
@@ -256,7 +256,7 @@ async def receive_post(update: Update, context: ContextTypes.DEFAULT_TYPE):
             caption = clean_text
 
             if caption:
-                caption += f"\n\n📢 {tag}"
+                caption += f"\n\n🔔{tag}🔔"
             else:
                 caption = f"📢 {tag}"
 
@@ -284,7 +284,7 @@ async def receive_post(update: Update, context: ContextTypes.DEFAULT_TYPE):
             caption = clean_text
 
             if caption:
-                caption += f"\n\n📢 {tag}"
+                caption += f"\n\n🔔{tag}🔔"
             else:
                 caption = f"📢 {tag}"
 
@@ -333,4 +333,21 @@ async def receive_post(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         f"✅ Sent: {success}\n"
         f"❌ Failed: {failed}"
+    )
+
+# ---------------- HELP ---------------- #
+
+async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
+    await update.message.reply_text(
+        "🤖 Bot Commands\n\n"
+        "/start - Start bot\n"
+        "/help - Show this help menu\n"
+        "/addchannel - Add a channel\n"
+        "/removechannel - Remove a channel\n"
+        "/channels - Show my channels\n\n"
+        "How to use:\n"
+        "1️⃣ Add me as administrator in your channel\n"
+        "2️⃣ Add your channel using /addchannel\n"
+        "3️⃣ Send me a post and I will publish it"
     )

@@ -11,6 +11,7 @@ from config import TOKEN
 from database import create_tables
 from handlers import (
     start,
+    help_command,
     add_channel,
     remove_channel,
     list_channels,
@@ -29,6 +30,13 @@ async def main():
             "start",
             start
         )
+    )
+
+    app.add_handler(
+    CommandHandler(
+        "help",
+        help_command
+    )
     )
 
     app.add_handler(
